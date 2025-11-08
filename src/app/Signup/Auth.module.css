@@ -1,0 +1,443 @@
+.container {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+  --success-color: #059669;
+  --success-hover: #047857;
+  --danger-color: #dc2626;
+  --danger-hover: #b91c1c;
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --border-radius-sm: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+  --transition-all: all 0.15s ease-in-out;
+  --transition-colors: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.formBox {
+  position: relative;
+  z-index: 2;
+  background: var(--white);
+  padding: 3rem;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  border: 1px solid var(--neutral-200);
+  backdrop-filter: blur(16px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.formBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+}
+
+.header {
+  color: var(--primary-color);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.formBox h3 {
+  color: var(--neutral-600);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.01em;
+}
+
+.toggleButtons {
+  display: flex;
+  background: var(--neutral-100);
+  border-radius: var(--border-radius-lg);
+  padding: 0.25rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--neutral-200);
+}
+
+.toggleButtons button {
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--neutral-600);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-all);
+  position: relative;
+  outline: none;
+  letter-spacing: 0.01em;
+}
+
+.toggleButtons button:hover {
+  color: var(--neutral-800);
+  background: var(--white);
+}
+
+.toggleButtons button:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.activeButton {
+  background: var(--white) !important;
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.walletButton {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--success-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-lg);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: var(--transition-colors);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid transparent;
+  outline: none;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.walletButton:hover:not(:disabled) {
+  background: var(--success-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.walletButton:focus {
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+.walletButton:disabled {
+  background: var(--neutral-400);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.walletButton:active {
+  transform: translateY(0);
+}
+
+.inputField {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  margin: 0.75rem 0;
+  border: 2px solid var(--neutral-200);
+  border-radius: var(--border-radius-lg);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--neutral-800);
+  background: var(--white);
+  transition: var(--transition-colors);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.inputField::placeholder {
+  color: var(--neutral-400);
+  font-weight: 400;
+}
+
+.inputField:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.inputField:hover:not(:focus) {
+  border-color: var(--neutral-300);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-all);
+  box-shadow: var(--shadow-sm);
+  margin: 1rem 0;
+  outline: none;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.submitButton:focus {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.submitButton:disabled {
+  background: var(--neutral-400);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+.submitButton:disabled::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--white);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+.toggleText {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--neutral-600);
+  font-weight: 400;
+}
+
+.toggleLink {
+  color: var(--primary-color) !important;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-colors);
+  border-bottom: 1px solid transparent;
+}
+
+.toggleLink:hover {
+  color: var(--primary-hover) !important;
+  border-bottom-color: var(--primary-hover);
+}
+
+.errorText {
+  color: var(--danger-color);
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: var(--border-radius-md);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .formBox {
+    padding: 2.5rem 2rem;
+    max-width: 100%;
+  }
+  
+  .header {
+    font-size: 2.5rem;
+  }
+  
+  .toggleButtons button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .inputField,
+  .walletButton,
+  .submitButton {
+    padding: 0.875rem 1.125rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  
+  .formBox {
+    padding: 2rem 1.5rem;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .header {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .formBox h3 {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .toggleButtons {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 0.5rem;
+  }
+  
+  .toggleButtons button {
+    border: 2px solid var(--neutral-200);
+    background: var(--white);
+    color: var(--neutral-600);
+    padding: 0.875rem;
+    font-size: 0.9rem;
+  }
+  
+  .toggleButtons button:hover {
+    border-color: var(--neutral-300);
+  }
+  
+  .activeButton {
+    border-color: var(--primary-color) !important;
+    background: var(--primary-color) !important;
+    color: var(--white) !important;
+  }
+  
+  .inputField,
+  .walletButton,
+  .submitButton {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .toggleText {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .formBox {
+    padding: 1.5rem 1rem;
+  }
+  
+  .header {
+    font-size: 2rem;
+  }
+  
+  .inputField,
+  .walletButton,
+  .submitButton {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+  }
+}
+
+.toggleButtons button:focus-visible,
+.walletButton:focus-visible,
+.submitButton:focus-visible,
+.inputField:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .submitButton:hover:not(:disabled),
+  .walletButton:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .formBox {
+    border: 2px solid var(--neutral-800);
+  }
+  
+  .inputField {
+    border-color: var(--neutral-800);
+  }
+  
+  .toggleButtons {
+    border-color: var(--neutral-800);
+  }
+}
