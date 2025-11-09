@@ -65,22 +65,10 @@ const User = () => {
     try {
       if (!account) throw new Error("Wallet not connected. Please connect to MetaMask.");
 
-      console.log("Fetching wallet address for affiliate link...");
-      const walletRes = await fetch(
-        `http://54.147.55.29:8080/api/affiliate/getWalletByLink?affiliateLink=${inputValue}`
-      );
-
-      if (!walletRes.ok) throw new Error("Wallet address not found for this affiliate link.");
-      console.log("WALLET LINK RECIEVED")
-      const walletDataResponse = await walletRes.json();
-      if (!walletDataResponse.walletAddress) {
-        throw new Error("Invalid wallet data received from server");
-      }
+    
       
-      const wallet = walletDataResponse.walletAddress.trim().toLowerCase();
-      setWalletData(walletDataResponse);
-      setWalletAddress(wallet);
-      setLinks(walletDataResponse.link);
+  const wallet = "0xa6f61b7eb52c388b7c8c427c06bbe160fc4ae96b".trim().toLowerCase();
+
 
       if (wallet === account.toLowerCase()) {
         throw new Error("You cannot click your own affiliate link.");
