@@ -109,7 +109,7 @@ export default function Recommendations() {
   
       let response;
       if (validProducts.length > 0) {
-        response = await fetch(`${NODE_API}/recommend`, {
+        response = await fetch('http://54.160.210.143:8000/recommend', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
