@@ -36,7 +36,7 @@ export default function Recommendations() {
 
   const fetchNotifications = async (affiliateAddress) => {
     try {
-      const response = await fetch(`${API_BASE}/api/notification/affiliate/${affiliateAddress}`);
+      const response = await fetch(`http://54.147.55.29:8080/api/notification/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch notifications');
 
       const data = await response.json();
@@ -52,7 +52,7 @@ export default function Recommendations() {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await fetch(`${API_BASE}/api/notification/deleteNotification/${notificationId}`, {
+      await fetch(`http://54.147.55.29:8080/api/notification/deleteNotification/${notificationId}`, {
         method: 'DELETE',
       });
 
@@ -77,7 +77,7 @@ export default function Recommendations() {
   const fetchRecentlyAffiliated = async (wallet) => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE}/api/affiliate/getRecentlyAffiliated?walletAddress=${wallet}`);
+      const response = await fetch(`http://54.147.55.29:8080/api/affiliate/getRecentlyAffiliated?walletAddress=${wallet}`);
       const data = await response.json();
   
       console.log("🔹 Recently Affiliated API Response:", data);
@@ -119,7 +119,7 @@ export default function Recommendations() {
           }),
         });
       } else {
-        response = await fetch(`${API_BASE}/api/product/recommendAllProducts`);
+        response = await fetch(`http://54.147.55.29:8080/api/product/recommendAllProducts`);
       }
   
       const data = await response.json();
@@ -155,7 +155,7 @@ export default function Recommendations() {
     
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE}/api/affiliate/affiliateProduct/${product._id}`, {
+      const response = await fetch(`http://54.147.55.29:8080/api/affiliate/affiliateProduct/${product._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ export default function Recommendations() {
     
     setLoading(true);
     try {
-        const response = await fetch(`${API_BASE}/api/affiliate/trackClick`, {
+        const response = await fetch(`http://54.147.55.29:8080/api/affiliate/trackClick`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ export default function Recommendations() {
     
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE}/api/affiliate/process-purchase`, {
+      const response = await fetch(`http://54.147.55.29:8080/api/affiliate/process-purchase`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
