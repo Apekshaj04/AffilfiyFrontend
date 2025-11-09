@@ -1,10 +1,11 @@
 import fetch from "node-fetch";
 
 export default async function handler(req, res) {
-  const url = "http://34.233.119.120:8080/api/affiliate/login";
+  const { userType, action } = req.query; // dynamic parts of URL
+  const backendUrl = `http://34.233.119.120:8080/api/${userType}/${action}`;
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(backendUrl, {
       method: req.method,
       headers: { "Content-Type": "application/json" },
       body: req.method === "POST" ? JSON.stringify(req.body) : undefined,
