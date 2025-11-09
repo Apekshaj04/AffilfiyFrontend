@@ -67,7 +67,7 @@ const User = () => {
 
       console.log("Fetching wallet address for affiliate link...");
       const walletRes = await fetch(
-        `http://localhost:8080/api/affiliate/getWalletByLink?affiliateLink=${inputValue}`
+        `http://54.147.55.29:8080/api/affiliate/getWalletByLink?affiliateLink=${inputValue}`
       );
 
       if (!walletRes.ok) throw new Error("Wallet address not found for this affiliate link.");
@@ -89,7 +89,7 @@ const User = () => {
       // Get product info to get the productId
       console.log("Fetching product information...");
       console.log(inputValue)
-      const productRes = await fetch(`http://localhost:8080/api/affiliate/product-by-link?link=${inputValue}`);
+      const productRes = await fetch(`http://54.147.55.29:8080/api/affiliate/product-by-link?link=${inputValue}`);
         console.log("productRes recieved")
       if (!productRes.ok) {
         throw new Error("Product not found for this affiliate link.");
@@ -109,7 +109,7 @@ const User = () => {
       setProductName(productDataResponse.product.name || "Unknown Product");
 
       console.log("Tracking click...");
-      const countRes = await fetch(`http://localhost:8080/api/affiliate/incrementCount`, {
+      const countRes = await fetch(`http://54.147.55.29:8080/api/affiliate/incrementCount`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -129,7 +129,7 @@ const User = () => {
       setSuccessMessage(countData.successMessage || "Click tracked successfully");
 
       console.log("Uploading data to Lighthouse...");
-      const apiKey = "b08bf0e8.fc223d7999874dae973c3e43028d9a21"; 
+      const apiKey = "a93904e1.ee303f056b6e41e39fa6d75f3f8cdcb7"; 
       
 
       const affiliateData = JSON.stringify({
@@ -197,7 +197,7 @@ const User = () => {
       console.log("Company ID:", companyId);
   
       console.log("Fetching company wallet address...");
-      const companyWallet = await fetch(`http://localhost:8080/api/company/wallet/${companyId}`);
+      const companyWallet = await fetch(`http://54.147.55.29:8080/api/company/wallet/${companyId}`);
       console.log("Companywallet",companyWallet);
       if (!companyWallet.ok) {
         throw new Error(`Failed to fetch company wallet: ${companyWallet.status}`);
@@ -223,7 +223,7 @@ const User = () => {
       console.log(toAddress)
       console.log(cid)
       console.log("Recording transaction...");
-      const response = await fetch("http://localhost:8080/api/transact/createTransaction", {
+      const response = await fetch("http://54.147.55.29:8080/api/transact/createTransaction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -255,7 +255,7 @@ const User = () => {
   const sendNotification = async (toAddress, ipfsCID) => {
     try {
       console.log("Sending notification to:", toAddress);
-      const notificationRes = await fetch("http://localhost:8080/api/notification/addNotification", {
+      const notificationRes = await fetch("http://54.147.55.29:8080/api/notification/addNotification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
