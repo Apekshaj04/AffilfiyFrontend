@@ -45,7 +45,7 @@ export default function Analytics() {
     if (!affiliateAddress) return;
     
     try {
-      const response = await fetch(`${API_BASE}/api/transact/affiliate/${affiliateAddress}`);
+      const response = await fetch(`http://54.147.55.29:8080/api/transact/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch transactions');
       
       const data = await response.json();
@@ -58,7 +58,7 @@ export default function Analytics() {
 
   const fetchNotifications = async (affiliateAddress) => {
     try {
-      const response = await fetch(`${API_BASE}/api/notification/affiliate/${affiliateAddress}`);
+      const response = await fetch(`http://54.147.55.29:8080/api/notification/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch notifications');
 
       const data = await response.json();
@@ -74,7 +74,7 @@ export default function Analytics() {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await fetch(`${API_BASE}/api/notification/deleteNotification/${notificationId}`, {
+      await fetch(`http://54.147.55.29:8080/api/notification/deleteNotification/${notificationId}`, {
         method: 'DELETE',
       });
 
@@ -103,7 +103,7 @@ export default function Analytics() {
     console.log("Fetching products for wallet:", walletAddress);
 
     try {
-      const response = await fetch(`${API_BASE}/api/affiliate/getRecentlyAffiliated?walletAddress=${walletAddress}`);
+      const response = await fetch(`http://54.147.55.29:8080/api/affiliate/getRecentlyAffiliated?walletAddress=${walletAddress}`);
       
       console.log("API Response Status:", response.status);
       
