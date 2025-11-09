@@ -30,7 +30,7 @@ export default function AffiliateDetail() {
     }
 
     const fetchAffiliateData = () => {
-      fetch(`http://localhost:8080/api/affiliate/${wallet}`)
+      fetch(`http://34.236.156.21:8080//api/affiliate/${wallet}`)
         .then(res => res.json())
         .then(data => {
           setUserData(data);
@@ -54,7 +54,7 @@ export default function AffiliateDetail() {
   }, [wallet]);
   const fetchNotifications = async (affiliateAddress) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/notification/affiliate/${affiliateAddress}`);
+      const response = await fetch(`http://34.236.156.21:8080/api/notification/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch notifications');
 
       const data = await response.json();
@@ -70,7 +70,7 @@ export default function AffiliateDetail() {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await fetch(`http://localhost:8080/api/notification/deleteNotification/${notificationId}`, {
+      await fetch(`http://34.236.156.21:8080/api/notification/deleteNotification/${notificationId}`, {
         method: 'DELETE',
       });
 
@@ -97,7 +97,7 @@ export default function AffiliateDetail() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8080/api/affiliate/${wallet}`, {
+      const response = await fetch(`http://34.236.156.21:8080/api/affiliate/${wallet}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
