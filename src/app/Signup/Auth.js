@@ -47,7 +47,7 @@ export default function Auth() {
     try {
       setLoading(true);
       const endpoint = isLogin ? '/login' : '/register';
-      const url = `http://localhost:8080/api/${userType}${endpoint}`;
+      const url = `http://34.236.156.21:8080/api/${userType}${endpoint}`;
       const response = await axios.post(url, { walletAddress, ...formData });
 
       alert(response.data.message);
