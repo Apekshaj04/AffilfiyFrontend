@@ -22,7 +22,7 @@ export default function About() {
     }
     setWallet(wa);
     
-    fetch(`http://localhost:8080/api/company/${wa}`)
+    fetch(`http://34.236.156.21:8080/api/company/${wa}`)
       .then(response => response.json())
       .then(data => setUserData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -51,7 +51,7 @@ export default function About() {
     
     setIsSubmitting(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/company/${wallet}`, {
+      const response = await fetch(`http://34.236.156.21:8080/api/company/${wallet}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
