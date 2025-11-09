@@ -48,9 +48,11 @@ export default function Auth() {
 
     try {
       setLoading(true);
-      const endpoint = isLogin ? '/login' : '/register';
-      const url = `${API_BASE}/api/${userType}${endpoint}`;
-      const response = await axios.post(url, { walletAddress, ...formData });
+   const endpoint = isLogin ? "login" : "register";
+const url = `/api/${userType}/${endpoint}`;
+
+const response = await axios.post(url, { walletAddress, ...formData });
+
 
       alert(response.data.message);
 
