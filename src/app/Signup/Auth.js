@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -6,6 +7,7 @@ import axios from 'axios';
 import styles from './Auth.module.css';
 
 export default function Auth() {
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
   const [userType, setUserType] = useState('affiliate');
   const [isLogin, setIsLogin] = useState(true);
   const [walletAddress, setWalletAddress] = useState('');
@@ -47,7 +49,7 @@ export default function Auth() {
     try {
       setLoading(true);
       const endpoint = isLogin ? '/login' : '/register';
-      const url = `http://localhost:8080/api/${userType}${endpoint}`;
+      const url = `${API_BASE}/api/${userType}${endpoint}`;
       const response = await axios.post(url, { walletAddress, ...formData });
 
       alert(response.data.message);

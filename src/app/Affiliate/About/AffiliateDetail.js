@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import styles from './AffiliateDetail.module.css';
 
 export default function AffiliateDetail() {
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -30,7 +31,7 @@ export default function AffiliateDetail() {
     }
 
     const fetchAffiliateData = () => {
-      fetch(`http://localhost:8080/api/affiliate/${wallet}`)
+      fetch(`${API_BASE}//api/affiliate/${wallet}`)
         .then(res => res.json())
         .then(data => {
           setUserData(data);
@@ -54,7 +55,7 @@ export default function AffiliateDetail() {
   }, [wallet]);
   const fetchNotifications = async (affiliateAddress) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/notification/affiliate/${affiliateAddress}`);
+      const response = await fetch(`${API_BASE}/api/notification/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch notifications');
 
       const data = await response.json();
@@ -70,7 +71,7 @@ export default function AffiliateDetail() {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await fetch(`http://localhost:8080/api/notification/deleteNotification/${notificationId}`, {
+      await fetch(`${API_BASE}/api/notification/deleteNotification/${notificationId}`, {
         method: 'DELETE',
       });
 
@@ -97,7 +98,7 @@ export default function AffiliateDetail() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8080/api/affiliate/${wallet}`, {
+      const response = await fetch(`${API_BASE}/api/affiliate/${wallet}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

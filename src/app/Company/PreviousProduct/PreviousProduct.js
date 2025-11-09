@@ -18,7 +18,7 @@ export default function PreviousProduct() {
     if (!walletAddress) return;
     
     // Fetch products
-    fetch(`http://localhost:8080/api/company/getProductsByCompany/${walletAddress}`)
+    fetch(`http://34.236.156.21:8080/api/company/getProductsByCompany/${walletAddress}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products || []);
@@ -34,7 +34,7 @@ export default function PreviousProduct() {
     if (!companyAddress) return;
     
     try {
-      const response = await fetch(`http://localhost:8080/api/transact/company/${companyAddress}`);
+      const response = await fetch(`http://34.236.156.21:8080/api/transact/company/${companyAddress}`);
       if (!response.ok) throw new Error('Failed to fetch transactions');
       
       const data = await response.json();

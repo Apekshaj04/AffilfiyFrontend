@@ -33,7 +33,7 @@ export default function AffiliatePortal() {
 
   const fetchNotifications = async (affiliateAddress) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/notification/affiliate/${affiliateAddress}`);
+      const response = await fetch(`http://34.236.156.21:8080/api/notification/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch notifications');
       const data = await response.json();
       setNotifications(data);
@@ -46,7 +46,7 @@ export default function AffiliatePortal() {
   };
   const fetchRequestNotifications = async (affiliateAddress) => {
     try {
-        const response = await fetch(`http://localhost:8080/api/request/getRequest/${affiliateAddress}`);
+        const response = await fetch(`http://34.236.156.21:8080/api/request/getRequest/${affiliateAddress}`);
         if (!response.ok) throw new Error('Failed to fetch requests');
 
         const data = await response.json();
@@ -54,12 +54,12 @@ export default function AffiliatePortal() {
             console.log("🔹 Request Data:", data[0]);
 
             // Fetch company details
-            const companyResponse = await fetch(`http://localhost:8080/api/company/getCompanyByWallet/${data[0].companyAddress}`);
+            const companyResponse = await fetch(`http://34.236.156.21:8080/api/company/getCompanyByWallet/${data[0].companyAddress}`);
             if (!companyResponse.ok) throw new Error('Failed to fetch company details');
             const companyDetails = await companyResponse.json();  // Extract JSON
 
             // Fetch product details
-            const productResponse = await fetch(`http://localhost:8080/api/product/${data[0].product}`);
+            const productResponse = await fetch(`http://34.236.156.21:8080/api/product/${data[0].product}`);
             if (!productResponse.ok) throw new Error('Failed to fetch product details');
             const productDetails = await productResponse.json();  // Extract JSON
 
@@ -78,7 +78,7 @@ export default function AffiliatePortal() {
 
   const deleteNotification = async (id) => {
     try {
-      await fetch(`http://localhost:8080/api/request/${id}`, {
+      await fetch(`http://34.236.156.21:8080/api/request/${id}`, {
         method: 'DELETE'
       });
       setNotifications(prev => prev.filter(n => n._id !== id));
@@ -90,7 +90,7 @@ export default function AffiliatePortal() {
 
   const deleteRequest = async (id) => {
     try {
-      await fetch(`http://localhost:8080/api/request/${id}`, {
+      await fetch(`http://34.236.156.21:8080/api/request/${id}`, {
         method: 'DELETE'
       });
       setRequestNotification(null);
@@ -105,7 +105,7 @@ export default function AffiliatePortal() {
     try {
         // Fetch the request details
         const notify = await fetch(
-            `http://localhost:8080/api/request/getRequest/${walletAddress}`
+            `http://34.236.156.21:8080/api/request/getRequest/${walletAddress}`
         );
 
         if (!notify.ok) {
@@ -133,7 +133,7 @@ export default function AffiliatePortal() {
 
         // Wait for `productID` to be retrieved before making the second request
         const response = await fetch(
-            `http://localhost:8080/api/affiliate/affiliateProduct/${productID}`, 
+            `http://34.236.156.21:8080/api/affiliate/affiliateProduct/${productID}`, 
             {
                 method: 'POST',
                 headers: {
