@@ -8,6 +8,8 @@ import styles from './Recommendations.module.css';
 
 export default function Recommendations() {
   const router = useRouter();
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+  const NODE_API = process.env.NEXT_PUBLIC_NODE_API;
   const [walletAddress, setWalletAddress] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [popupNotification, setPopupNotification] = useState(null);
@@ -34,7 +36,7 @@ export default function Recommendations() {
 
   const fetchNotifications = async (affiliateAddress) => {
     try {
-      const response = await fetch(`http://34.236.156.21:8080/api/notification/affiliate/${affiliateAddress}`);
+      const response = await fetch(`${API_BASE}/api/notification/affiliate/${affiliateAddress}`);
       if (!response.ok) throw new Error('Failed to fetch notifications');
 
       const data = await response.json();
@@ -50,7 +52,7 @@ export default function Recommendations() {
 
   const deleteNotification = async (notificationId) => {
     try {
-      await fetch(`http://34.236.156.21:8080/api/notification/deleteNotification/${notificationId}`, {
+      await fetch(`${API_BASE}/api/notification/deleteNotification/${notificationId}`, {
         method: 'DELETE',
       });
 
@@ -75,7 +77,7 @@ export default function Recommendations() {
   const fetchRecentlyAffiliated = async (wallet) => {
     try {
       setLoading(true);
-      const response = await fetch(`http://34.236.156.21:8080/api/affiliate/getRecentlyAffiliated?walletAddress=${wallet}`);
+      const response = await fetch(`${API_BASE}/api/affiliate/getRecentlyAffiliated?walletAddress=${wallet}`);
       const data = await response.json();
   
       console.log("🔹 Recently Affiliated API Response:", data);
@@ -107,7 +109,7 @@ export default function Recommendations() {
   
       let response;
       if (validProducts.length > 0) {
-        response = await fetch('http://54.242.59.99:8000/recommend', {
+        response = await fetch(`${NODE_API}/recommend`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -117,7 +119,7 @@ export default function Recommendations() {
           }),
         });
       } else {
-        response = await fetch('http://34.236.156.21:8080/api/product/recommendAllProducts');
+        response = await fetch(`${API_BASE}/api/product/recommendAllProducts`);
       }
   
       const data = await response.json();
@@ -153,7 +155,7 @@ export default function Recommendations() {
     
     setLoading(true);
     try {
-      const response = await fetch(`http://34.236.156.21:8080/api/affiliate/affiliateProduct/${product._id}`, {
+      const response = await fetch(`${API_BASE}/api/affiliate/affiliateProduct/${product._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -186,7 +188,7 @@ export default function Recommendations() {
     
     setLoading(true);
     try {
-        const response = await fetch('http://34.236.156.21:8080/api/affiliate/trackClick', {
+        const response = await fetch(`${API_BASE}/api/affiliate/trackClick`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -223,7 +225,7 @@ export default function Recommendations() {
     
     setLoading(true);
     try {
-      const response = await fetch('http://34.236.156.21:8080/api/affiliate/process-purchase', {
+      const response = await fetch(`${API_BASE}/api/affiliate/process-purchase`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
