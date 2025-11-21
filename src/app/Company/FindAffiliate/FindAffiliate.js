@@ -32,7 +32,7 @@ export default function FindAffiliate() {
     const fetchAffiliatesWithScores = async () => {
       try {
         // console.log(companyAddress)
-        const affiliatesRes = await fetch('http://54.147.55.29:8080/api/affiliate/getAffiliatesDescending');
+        const affiliatesRes = await fetch('http://54.197.48.44:8080/api/affiliate/getAffiliatesDescending');
         if (!affiliatesRes.ok) throw new Error('Failed to fetch affiliates');
         const affiliatesData = await affiliatesRes.json();
         
@@ -40,10 +40,10 @@ export default function FindAffiliate() {
           affiliatesData.affiliates.map(async (affiliate) => {
             try {
               const matchRes = await fetch(
-                `http://54.147.55.29:8080/api/affiliate/match/${companyAddress}/${affiliate.walletAddress}`
+                `http://54.197.48.44:8080/api/affiliate/match/${companyAddress}/${affiliate.walletAddress}`
               );
               const topCategoryRes = await fetch(
-                `http://54.147.55.29:8080/api/affiliate/topMost/${affiliate.walletAddress}`
+                `http://54.197.48.44:8080/api/affiliate/topMost/${affiliate.walletAddress}`
               );
               
               const matchData = await matchRes.json();
@@ -83,7 +83,7 @@ export default function FindAffiliate() {
     
     try {
       const response = await fetch(
-        `http://54.147.55.29:8080/api/company/getProductsByCompany/${companyAddress}`
+        `http://54.197.48.44:8080/api/company/getProductsByCompany/${companyAddress}`
       );
       const data = await response.json();
       setProducts(data.products || []);
@@ -110,7 +110,7 @@ export default function FindAffiliate() {
         }
 
         const response = await fetch(
-            `http://54.147.55.29:8080/api/request/createRequest/${companyAddress}`,
+            `http://54.197.48.44:8080/api/request/createRequest/${companyAddress}`,
             {
                 method: "POST",
                 headers: {
