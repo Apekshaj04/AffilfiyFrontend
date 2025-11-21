@@ -23,7 +23,7 @@ export default function AddProduct() {
       const walletAddress = localStorage.getItem('walletCompany');
       if (walletAddress) {
         try {
-          const response = await fetch(`http://54.147.55.29:8080/api/company/getCompanyByWallet/${walletAddress}`);
+          const response = await fetch(`http://54.197.48.44:8080/api/company/getCompanyByWallet/${walletAddress}`);
           const data = await response.json();
           if (response.ok) {
             setFormData((prevData) => ({ ...prevData, company: data._id }));
@@ -51,7 +51,7 @@ export default function AddProduct() {
     }
 
     try {
-        const response = await fetch(`http://54.147.55.29:8080/api/company/addProduct/${walletAddress}`, {
+        const response = await fetch(`http://54.197.48.44:8080/api/company/addProduct/${walletAddress}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
