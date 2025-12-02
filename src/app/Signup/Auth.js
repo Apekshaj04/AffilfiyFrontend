@@ -49,7 +49,7 @@ export default function Auth() {
     try {
       setLoading(true);
    const endpoint = isLogin ? "login" : "register";
-const url = `http://54.197.48.44:8080/api/${userType}/${endpoint}`;
+const url = `http://100.31.0.34:8080/api/${userType}/${endpoint}`;
 
 const response = await axios.post(url, { walletAddress, ...formData });
 
