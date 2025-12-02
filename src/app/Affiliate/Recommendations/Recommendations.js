@@ -421,15 +421,37 @@ export default function Recommendations() {
                             className={styles.affiliateLinkInput} 
                             readOnly 
                           />
-                          <button 
-                            className={styles.copyButton}
-                            onClick={() => {
-                              navigator.clipboard.writeText(activeProduct.affiliateLink);
-                              alert("Affiliate link copied to clipboard!");
-                            }}
-                          >
-                            Copy
-                          </button>
+                    <button
+  className={styles.copyButton}
+  onClick={() => {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(activeProduct.affiliateLink)
+        .then(() => alert("Affiliate link copied!"))
+        .catch(() => {
+          // Fallback method
+          const temp = document.createElement("textarea");
+          temp.value = activeProduct.affiliateLink;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          alert("Affiliate link copied!");
+        });
+    } else {
+      // Fallback method
+      const temp = document.createElement("textarea");
+      temp.value = activeProduct.affiliateLink;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("Affiliate link copied!");
+    }
+  }}
+>
+  Copy
+</button>
+
                         </div>
                       </div>
                     )}
